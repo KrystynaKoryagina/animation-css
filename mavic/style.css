@@ -21,20 +21,31 @@
 	content: "";
 	width: 300px;
 	height: 300px;
+
+	animation-duration: .5s;
+	animation-fill-mode: forwards;
 }
 .mavic::before {
 	left: 21%;
 	background-image: url(img/iphone-back.png);
+	transform: translateY(200%) rotate(-20deg);
 }
 .mavic::after {
 	right: 21%;
 	background-image: url(img/iphone-front.png);
+	transform: translateY(200%) rotate(20deg);
 }
-.mavic-on {
-	animation-name: mavic-on;
+.animate-on::after {
+	animation-name: front-on;
 }
-.mavic-off {
-	animation-name: mavic-off;
+.animate-on::before {
+	animation-name: back-on;
+}
+.animate-off::after {
+	animation-name: front-off;
+}
+.animate-off::before {
+	animation-name: back-off;
 }
 .mavic-title {
 	position: absolute;
@@ -49,8 +60,13 @@
 	animation-fill-mode: forwards;
 	animation-timing-function: ease-out;
 }
-
-@keyframes mavic-on {
+.mavic-on {
+	animation-name: mavic-on;
+}
+.mavic-off {
+	animation-name: mavic-off;
+}
+@keyframes mavic-off {
 	0% {
 		transform: translateY(-200%);
 	}
@@ -61,20 +77,64 @@
 		transform: translateY(-20px);
 	}
 	80% {
-		transform: translateY(10px);
+		transform: translateY(15px);
 	}
 	90% {
-		transform: translateY(-5px);
+		transform: translateY(-10px);
 	}
 	100% {
 		transform: translateY(0);
 	}
 }
-@keyframes mavic-off {
+@keyframes mavic-on {
 	0% {
 		transform: translateY(0);
 	}
 	100% {
 		transform: translateY(-200%);
+	}
+}
+@keyframes front-on {
+	0% {
+		right: 21%;
+		transform: translateY(200%) rotate(20deg);
+	}
+	70% {
+		right: 21%;
+		transform: translateY(0) rotate(0);
+	}
+	100% {
+		right: 31%;
+		transform: translateY(0) rotate(0);
+	}
+}
+@keyframes back-on {
+	0% {
+		left: 21%;
+		transform: translateY(200%) rotate(-20deg);
+	}
+	70% {
+		left: 21%;
+		transform: translateY(0) rotate(0);
+	}
+	100% {
+		left: 31%;
+		transform: translateY(0) rotate(0);
+	}
+}
+@keyframes front-off {
+	0% {
+		transform: translateY(0) rotate(0);
+	}
+	100% {
+		transform: translateY(200%) rotate(20deg);
+	}
+}
+@keyframes back-off {
+	0% {
+		transform: translateY(0) rotate(0);
+	}
+	100% {
+		transform: translateY(200%) rotate(-20deg);
 	}
 }
